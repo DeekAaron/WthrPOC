@@ -1,0 +1,38 @@
+# CI — exists so branch protection can require a stable `ci` check from commit one.
+# Build / lint / test are stack-specific and land later (via /init-tech-context or the first
+# feature build) — add them as steps BEHIND this same `ci` job name, so the branch-protection
+# rule that requires `ci` never needs revisiting. See CONTRIBUTING.md.
+name: ci
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+# Least privilege from commit one. The default GITHUB_TOKEN is over-scoped; pinned to read-only
+# so later steps start from read-only and widen deliberately, never silently inherit write access.
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    name: ci
+    runs-on: ubuntu-latest
+    steps:
+      # Actions are PINNED BY COMMIT SHA (not a floating tag) with the version trailed in a
+      # comment — a tag can be force-moved under you, a SHA cannot. Supply-chain baseline.
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        with:
+          fetch-depth: 0  # full history so the secret scan covers every commit
+
+      # Secret scanning — the one functional check worth running at commit one: stack-agnostic,
+      # and the earliest commits are when a leaked key is most likely to slip in unnoticed.
+      # gitleaks is installed from a pinned release rather than a floating third-party action.
+      - name: Detect secrets (gitleaks)
+        env:
+          GITLEAKS_VERSION: "8.21.2"
+        run: |
+          curl -sSfL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" \
+            | tar -xz -C /usr/local/bin gitleaks
+          gitleaks detect --source . --redact --no-banner
