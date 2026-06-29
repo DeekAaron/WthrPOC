@@ -26,6 +26,12 @@ Authority order (lower wins): **ADR > Technical-Context > business-domain-contex
 - **`docs/superpowers/specs/`** · **`plans/`** — per-Feature Spec and Plan (the Plan carries
   the **Context references** an agent loads).
 
+## Working agreements
+
+- **Open the PR yourself.** When work is committed and the branch is pushed, open the pull
+  request into `main` proactively — don't wait to be asked. (HITL changes still merge through
+  PR + review; this just means the agent creates the PR rather than leaving it to the human.)
+
 ## Dev commands
 
 Stack: **.NET MAUI on .NET 9 (C#)** — Windows + macOS desktop (see `Technical-Context.MD`).
