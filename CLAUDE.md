@@ -28,12 +28,11 @@ Authority order (lower wins): **ADR > Technical-Context > business-domain-contex
 
 ## Dev commands
 
-Stack: **Tauri v2 + React/TypeScript** (see `Technical-Context.MD`). These are the canonical
-commands; they go live once the project is scaffolded (`Cargo.toml` + `package.json` land with
-the first feature build).
+Stack: **.NET MAUI on .NET 9 (C#)** — Windows + macOS desktop (see `Technical-Context.MD`).
+These are the canonical commands; they go live once the project is scaffolded (the `.csproj`
+lands with the first feature build).
 
-- `npm run tauri dev` — run the app (Rust core + webview) in development
-- `npm run tauri build` — produce the cross-platform desktop bundle
-- `npm test` — renderer unit tests (Vitest)
-- `cargo test` — Rust core tests (run from `src-tauri/`)
-- `npm run lint` — lint the renderer
+- `dotnet build -t:Run -f net9.0-windows10.0.19041.0` — run the app on Windows
+- `dotnet build -t:Run -f net9.0-maccatalyst` — run the app on macOS
+- `dotnet test` — unit tests (xUnit)
+- `dotnet format` — format / lint the codebase
