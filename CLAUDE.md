@@ -28,6 +28,12 @@ Authority order (lower wins): **ADR > Technical-Context > business-domain-contex
 
 ## Dev commands
 
-<!-- TODO(init): fill once the stack is chosen — install / test tiers / run.
-     Written by /init-tech-context or the first feature build. -->
-_Dev commands not set yet — filled when the stack is chosen (`/init-tech-context`)._
+Stack: **Tauri v2 + React/TypeScript** (see `Technical-Context.MD`). These are the canonical
+commands; they go live once the project is scaffolded (`Cargo.toml` + `package.json` land with
+the first feature build).
+
+- `npm run tauri dev` — run the app (Rust core + webview) in development
+- `npm run tauri build` — produce the cross-platform desktop bundle
+- `npm test` — renderer unit tests (Vitest)
+- `cargo test` — Rust core tests (run from `src-tauri/`)
+- `npm run lint` — lint the renderer
