@@ -26,8 +26,19 @@ Authority order (lower wins): **ADR > Technical-Context > business-domain-contex
 - **`docs/superpowers/specs/`** · **`plans/`** — per-Feature Spec and Plan (the Plan carries
   the **Context references** an agent loads).
 
+## Working agreements
+
+- **Open the PR yourself.** When work is committed and the branch is pushed, open the pull
+  request into `main` proactively — don't wait to be asked. (HITL changes still merge through
+  PR + review; this just means the agent creates the PR rather than leaving it to the human.)
+
 ## Dev commands
 
-<!-- TODO(init): fill once the stack is chosen — install / test tiers / run.
-     Written by /init-tech-context or the first feature build. -->
-_Dev commands not set yet — filled when the stack is chosen (`/init-tech-context`)._
+Stack: **.NET MAUI on .NET 9 (C#)** — Windows + macOS desktop (see `Technical-Context.MD`).
+These are the canonical commands; they go live once the project is scaffolded (the `.csproj`
+lands with the first feature build).
+
+- `dotnet build -t:Run -f net9.0-windows10.0.19041.0` — run the app on Windows
+- `dotnet build -t:Run -f net9.0-maccatalyst` — run the app on macOS
+- `dotnet test` — unit tests (xUnit)
+- `dotnet format` — format / lint the codebase
