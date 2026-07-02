@@ -19,3 +19,9 @@ out/
 
 # AFK orchestrator run artifacts — must never be committed
 .orchestrator/
+
+# Per-Feature Spec and Plan — in ADO mode these live on the Feature work item
+# (Description + Implementation Plan field via /publish-feature), never in the repo.
+# Generated locally for publishing; kept out of git to avoid a second source of truth.
+docs/superpowers/specs/
+docs/superpowers/plans/

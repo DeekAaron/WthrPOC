@@ -19,6 +19,8 @@ The app launches, fetches live weather for **one fixed Location** (a hard-coded 
 
 **Why first:** It is the thinnest vertical slice that exercises every layer of the stack — MAUI DI host → `IHttpClientFactory`-backed service seam → Open-Meteo → domain mapping → ViewModel lifecycle → XAML binding, on both Windows and macOS — and it establishes the patterns the rest of the project follows: the Tier-1 recorded-replay fixture for `IWeatherProvider` and the ViewModel ⇄ View binding test.
 
+**Status:** **Published to ADO** — Feature [#95308](https://dev.azure.com/Enate/ebb6dc2c-7ed2-461f-9d02-0454feb6e3b4/_workitems/edit/95308), 2026-07-02.
+
 ---
 
 ## Feature 2: Search for a place and pick the Location
